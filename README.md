@@ -4,15 +4,15 @@
 2. [Defense](#defense)
 3. [Offense](#offense)
 
-## Introduction
+# Introduction
 
 Detailed charting of NFL plays (recording offensive/defensive situations, behaviors and outcomes) is the essential prerequisite of quantitative analysis.
 
 This is why detailed charting is considered a core competency and competitive advantage by NFL franchise analytics departments and private analytics (ex. PFF).
 
-Basic play-by-play charts are already available freely to the public via the NFLs public API. This data includes basic information which generally focuses on the key players and outcomes of the offensive and defensive halves of a player.
+Basic play-by-play charting is already freely available via the NFLs public API and access libraries like [](). This data includes basic information on play outcomes (yards, points, fouls) and key players (ball handlers, tacklers) for the offense and defense.
 
-That said, this charting excludes large amounts of offensive and defensive information which is necessary for deeper analysis.
+That said, there is a tremendous amount of potential information which can be captured around offensive and defensive play which can fuel deeper analysis.
 
 Every year the open source analytics community expends 100s of volunteer hours 
 building additional charting for 263+ hours of NFL game film.
@@ -22,7 +22,7 @@ This project attempts to address the challenge of transforming this volunteer la
 
 # Components of Offensive and Densive Charting
 
-## Player Composition/Alignment
+## Positional Composition/Alignment
 
 Player Composition and alignment describes the initial state of the offense and defense in a way which allows us to understand the players involved (beyond the ball handlers and tacklers recorded in the NFL play-by-play) and probable offensive and defensive strategy.
 
@@ -39,13 +39,31 @@ useful level of abstraction that works consistently across all plays (do we desc
 
 ##Subgroup Organization
 
-Even once we have described the broad composition and alignment of the offense or defense, there is still important information to be captured about specific subgroups.
+Even once we have described the overall composition and alignment of the offense or defense, there is still important information to be captured about specific positional subgroups.
 
-Describing that there are 3 WR on the field fails to describe where they are relative to the OL/QB (which are required to be fixed). 
+It is often useful to describe these subgroups atomically because the terminology involved is often specific to then. 
+For example "trips" when describing WR or "cover 2" when describing DBs. 
 
 ## Movement
 In reality player movement on the team is extremely complex when described in its full detail (such as the NFLs next gen motion capture). 
 It is far more useful to identify patterns in typical offensive and defensive movement, name them
+
+While most of the information described here can be observed and recorded prior to the snap, movement generally requires viewing the entire play. Additionally, as player movement are often modified in response to defense, there is some subjective differentiation between what the observed judges to the intended vs. actual action
+
+WR routes (deep crosser) and RB running (outside zone) are two examples of movement
+
+## Player Performance Charting
+Certain actions which are essential to a position or play can be described with more granularity
+
+For offensive plays and defensive plays involving the movement of the ball, yards and possession, they can be described as 
+
+Passing plays, for example, give us an opportunity to judge the accuracy of the QB, the separation, hands and run-after-catch ability of the WR and the coverage of the DB.
+
+All plays involve blocking for many or most of the players on the field, providing another grading opportunity both individually and collectively
+
+Offensive line play as a collective unit can be 
+
+Obviously performance is among the most subjective and position sensitive attribute in this extension framework, and will have the most room for dissent among annotators.
 
 # Offense
 
