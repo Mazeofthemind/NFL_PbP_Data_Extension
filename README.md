@@ -6,54 +6,49 @@
 
 # Introduction
 
-Detailed charting of NFL plays (recording offensive/defensive situations, behaviors and outcomes) is the essential prerequisite of quantitative analysis.
+Consistent, detailed charting is an essential part of developing powerful analytics and insights. It is considered a key asset for NFL franchises and private firms which can either purchase or produce it.
 
-This is why detailed charting is considered a core competency and competitive advantage by NFL franchise analytics departments and private analytics (ex. PFF).
+Meanwhile the open source analytic community must rely on the basic play-by-play (PBP) charting available via the NFLs public API, and augment where needed with hand crafted charting.
+This hand crafted charting adds up to 100s of hours across the community, concentrating on approxomately 263+ hours of game film.
 
-Basic play-by-play charting is already freely available via the NFLs public API and access libraries like [](). This data includes basic information on play outcomes (yards, points, fouls) and key players (ball handlers, tacklers) for the offense and defense.
+While in theory this should be more then enough labor to produce free, high quality supplementary data to the NFL PBP if employed effectively. 
+In reality public supplementary data is sparse to nonexistent for most games and teams, even within the open source analytics community.
 
-That said, there is a tremendous amount of potential information which can be captured around offensive and defensive play which can fuel deeper analysis.
+This project attempts to provide documentation, tooling and methodologies to help the open source community maximize the efficiency of its voluntary charting in order to provide high quality supplementary PBP to the community.
 
-Every year the open source analytics community expends 100s of volunteer hours 
-building additional charting for 263+ hours of NFL game film.
-In theory this should be more then enough to produce high quality charting for every NFL game if done efficiently, but in reality produces very little in the way of publically accessible and usable data.
+# Components of Offensive and Defensive Charting
 
-This project attempts to address the challenge of transforming this volunteer labor into high quality data requires a combination of documentation, software tooling and methodologies which will allow them to produce accurate and reusable expanded charting.
-
-# Components of Offensive and Densive Charting
+*Please note that this guidance represents just one way to describe a football offense and defense in the course of a play. Countless terminologies and methdologies exist across various analysts, this is essentially a synthesis of several which attempts to maximize flexibility and descriptiveness*
 
 ## Positional Composition/Alignment
 
-Player Composition and alignment describes the initial state of the offense and defense in a way which allows us to understand the players involved (beyond the ball handlers and tacklers recorded in the NFL play-by-play) and probable offensive and defensive strategy.
+Player **Composition and Alignment** attempts to describes the state of the offense/defense before a play in terms of players and their responsibilities.
+This data is not included in NFL PBP other then those who happen to handle the ball (usually no more then 3-4 on any given player)
 
-Charting composition is simple and identical for both offense and defense, listing the players on the field using the NFLs player ID system.
-The NFL ID is used in place of the player's name and jersey number in order to disambiguate the player without relying on the team's roster for that season.
+**Composition** is the simpler of the two descriptive techniques and includes two basic data artifacts: 
 
-Alignment attempts to provides offensive (TE, WR) and defensive (S, OLB) labels which provide information on the presumed role of the player based on their relative location on the field 
+1. **Composition Identifier** (in numeric shorthand) describing the mix of positions on the field for the offense or defense (ex. 3-1-1 for offense)
+2. **Player IDs** in a predetermined order that signifies their **Position on the Field** (potentially opposed to rostered position) within the composition (ex. 7th ID is the leftmost WR on a 3-1-1 offense). 
 
-### Positional Subjectivity
-How far does a TE need to be from the OT to become a slot WR?) and finding a 
+##Positional Formations
+Once the **Composition Identifier** establishes the size of each position group, we must still describe the placement or **Positional Formation** of its members.
 
-### Positional Abstraction
-useful level of abstraction that works consistently across all plays (do we describe players as WR or X/Y/Z recievers)
+For example, 3 WR have drastically different responsibilities when deployed in *3-0 Loose Bunch* (3 WR bunched to the right) as opposed to a *2-1 Spread* (2 outside WR and one slot WR to the left).
+Similar variations are possible for the defensive line (4 Bear) and defensive backfield (Cover 2)
 
-##Subgroup Organization
+Compared to **Composition** the terminology and classification of formations is extremely variable and subjective. 
 
-Even once we have described the overall composition and alignment of the offense or defense, there is still important information to be captured about specific positional subgroups.
+## Individual Action
+Once we have identified the **Composition** and **Formation** of each position group, we must still account for the significant actions that those groups take after the snap.
 
-It is often useful to describe these subgroups atomically because the terminology involved is often specific to then. 
-For example "trips" when describing WR or "cover 2" when describing DBs. 
+Different actions demand different levels of detail
 
-## Movement
-In reality player movement on the team is extremely complex when described in its full detail (such as the NFLs next gen motion capture). 
-It is far more useful to identify patterns in typical offensive and defensive movement, name them
+Some, like *Coverage*, *Rushing*, *Blocking" can be described by simple one-world labels
 
-While most of the information described here can be observed and recorded prior to the snap, movement generally requires viewing the entire play. Additionally, as player movement are often modified in response to defense, there is some subjective differentiation between what the observed judges to the intended vs. actual action
-
-WR routes (deep crosser) and RB running (outside zone) are two examples of movement
+Others require longer, more detailed definitions like WR routes (short, deep curl, slant, etc.) and pass attempts (rollout) 
 
 ## Player Performance Charting
-Certain actions which are essential to a position or play can be described with more granularity
+In addition to providing detailed descriptions of individual actions, we can provide additional descriptive detail on the outcome of those actions
 
 For offensive plays and defensive plays involving the movement of the ball, yards and possession, they can be described as 
 
